@@ -1,0 +1,69 @@
+body{
+    background-image: url("../images/cadastro-login-background.png");
+}
+
+.nav{
+    background-color: rgb(46, 43, 43); 
+    position: fixed;
+    width: 100%;
+
+}
+
+.nav-link{
+    color: rgb(255, 255, 255) !important;
+    font-family: "Alice";
+    font-weight: bold;
+    font-size: medium;
+    text-align: center;
+}
+
+.icone{
+    width: 18.7px;
+    height: 18.7px;
+    padding-bottom: 5%;
+}
+
+.form-group{
+    text-align: center;
+    align-items: center;
+    padding: 20%;
+}
+
+.titulo-login{
+    text-align: center;
+    font-size: medium;
+}
+
+.sub-titulo-login{
+    text-align: center;
+    font-size: small;
+}
+
+.background-form{
+    background-color:  rgba(255, 255, 255, 0.6);
+}
+
+.formulario-login{
+    padding: 5%;
+    margin-top: 20%;
+}
+
+.form-label{
+    align-items: center;
+    font-size: small;
+}
+
+.form-control{
+    border-radius: 30px;
+    margin-bottom: 3%;
+}
+
+.btn{
+    background-color: rgb(69, 66, 66, 0.7) !important;
+}
+
+.rota-cadastro{
+    font-size: small;
+    text-align: center;
+    margin-top: 3%;
+}

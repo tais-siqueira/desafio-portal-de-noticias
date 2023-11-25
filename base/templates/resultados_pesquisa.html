@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Resultados da Pesquisa</title>
+    {% if results %}
+        <ul>
+            {% for noticia in results %}
+                <li><a href="{% url 'noticia_detalhe' noticia.id %}">{{ noticia.titulo }}</a></li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Nenhum resultado encontrado.</p>
+    {% endif %}
+</body>
+</html>

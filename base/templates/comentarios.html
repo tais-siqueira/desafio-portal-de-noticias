@@ -1,0 +1,27 @@
+{% extends 'detalhes_noticia.html' %}
+
+{% block content %}
+
+  <h2 class="titulo_comentarios">Comentários</h2>
+  <ul>
+    {% for comentario in comentarios %}
+
+  <div>
+  <form method="post" action="{% url 'detalhes_noticia' noticia_id=noticia.id %}">
+    
+    {% csrf_token %}
+    <input type="text" class="form-control" placeholder="adicione um comentario" name="comentario">
+
+    {{ form.as_p }}
+    <button type="submit">Comentar</button>
+  </form>
+
+
+    <img src="{{ comentario.foto_perfil.url }}"  width="50" height="50">
+    <strong>{{ comentario.autor }}</strong>
+    <p>{{ comentario.texto }}</p>
+    {% endfor %}
+  </ul>
+
+  
+{% endblock %}

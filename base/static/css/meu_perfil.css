@@ -1,0 +1,62 @@
+.navbar{
+    background-color: rgb(46, 43, 43); 
+    position: fixed;
+    width: 100%;
+    
+}
+
+.navbar-brand{
+    font-family: "Alice";
+    font-weight: bold;
+    font-size: medium;
+    color: rgb(255, 255, 255);
+}
+
+.navbar-brand:hover{
+    color: rgb(255, 255, 198, 0.6);
+}
+
+.icone{
+    width: 22.7px;
+    height: 22.7px;
+    padding-bottom: 5%;
+    margin-left: 15%;
+}
+
+.nav-link{
+    font-size:large;
+    color: rgb(255, 255, 255);
+    padding-bottom: 15%;
+    padding-left: 30%;
+}
+
+.nav-link:hover{
+    color: rgb(255, 255, 198, 0.6);
+}
+
+.btn{
+    background-color: #444242;
+    color: rgb(228, 227, 220);
+}
+
+
+body{
+    background-image: url("../images/home-background-4.png");
+    background-size: cover;
+}
+
+.bloco{
+    background-color: rgb(255, 255, 255, 0.6);
+    margin-top: 10%;
+    padding: 20%;
+}
+
+.bloco-criar{
+    align-items: center;
+    padding: 10%;
+}
+
+.criar_postagens{
+    text-align: center;
+    justify-content: center;
+}
