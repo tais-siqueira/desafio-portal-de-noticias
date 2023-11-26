@@ -30,25 +30,24 @@
       <div class="col-md-4">
        <div class="bloco">
         <form method="post">
-          
           {% csrf_token %}
       
           <div class="form-group">
               {{form_usuario.username.errors}}
-              <label>Usuário: </label>
+              <label>Username: </label>
               {{form_usuario.username}}
           </div>
-
-          <div class="form-group">
-            {{form_usuario.email.errors}}
-            <label>E-mail: </label>
-            {{form_usuario.email}}
-        </div>
       
           <div class="form-group">
               {{form_usuario.password1.errors}}
               <label>Senha: </label>
               {{form_usuario.password1}}
+          </div>
+      
+          <div class="form-group">
+              {{form_usuario.password2.errors}}
+              <label>Confirmação de senha: </label>
+              {{form_usuario.password2}}
           </div>
       
           <div class="form-group">

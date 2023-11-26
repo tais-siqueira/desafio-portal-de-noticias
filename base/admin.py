@@ -5,7 +5,6 @@ from base.models import  Categorias, Noticia, Comentario, Cadastro
 @admin.register(Cadastro)
 class CadastroAdmin(admin.ModelAdmin):
     list_display = ['username', 'email', 'data']
-    search_fields = ['username', 'email']
     list_filter = ['data']
 
 @admin.register(Categorias)

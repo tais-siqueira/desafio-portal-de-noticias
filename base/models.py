@@ -1,25 +1,23 @@
 from django.db import models
 from django.conf import settings
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, AbstractUser
 from django.contrib.auth.models import User
 from django.dispatch import receiver
 from django.db.models.signals import post_save
 from PIL import Image as Im
 
 
-class Cadastro(models.Model):
-    username = models.CharField(max_length = 50)  
-    email = models.EmailField(max_length = 50, unique=True) 
-    senha = models.CharField(max_length = 50)
-    data = models.DateTimeField(auto_now_add=True)
-
+class Cadastro(AbstractUser):
+    email = models.EmailField(max_length = 50, unique=True)
+    data = models.DateTimeField(auto_now_add = True)
+    password = models.CharField(max_length=128, default='some_default_value')
+    
+    class Meta:
+        swappable = 'AUTH_USER_MODEL'
+    
     def __str__(self): 
         return f'{self.username} [{self.email}]' 
 
-    '''class Meta:
-        verbose_name = 'Usuário Cadastrado' 
-        verbose_name_plural = 'Usuários Cadastrados' 
-        ordering = ['-data']'''
     
     
 class Categorias(models.Model):

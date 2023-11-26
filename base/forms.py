@@ -7,13 +7,13 @@ from ckeditor.widgets import CKEditorWidget
 
 
 
-class CadastroForm(forms.ModelForm):
+class CadastroForm(UserCreationForm):
     class Meta:
         model = Cadastro
-        fields = ['username', 'email', 'senha']
+        fields = ['username', 'email', 'password1', 'password2']
 
     def clean_senha(self):
-        senha = self.cleaned_data.get('senha')
+        senha = self.cleaned_data.get('password1')
         if not senha:
             raise forms.ValidationError('Este campo é obrigatório.')
         return senha
