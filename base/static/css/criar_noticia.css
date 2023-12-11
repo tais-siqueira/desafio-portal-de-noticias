@@ -1,8 +1,7 @@
 .navbar{
     background-color: rgb(46, 43, 43); 
-    position: fixed;
+    /*position: fixed;*/
     width: 100%;
-    
 }
 
 .navbar-brand{
@@ -47,15 +46,76 @@ body{
 
 .bloco{
     background-color: rgb(255, 255, 255, 0.6);
-  
-    position: fixed;
+    margin-top: 10%;
+    padding: 5% 10% 10% 10%;
 }
 
 form{
-    align-items: center;
-    text-align: center;
-    justify-content: center;
-    width: 200%;
-    height: 200%;
+    padding-left: 10%;
+}
+
+/* Estilo para o título da notícia */
+.titulo_noticia {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+}
+
+/* Estilo para o campo de entrada do título */
+input#id_titulo {
+    width: 70%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+/* Estilo para o rótulo das categorias */
+label[for="id_categorias"] {
+    font-size: 16px;
+    font-weight: bold;
+    color: #555;
+}
+
+/* Estilo para o campo de seleção de categorias */
+select#id_categorias {
+    width: 17%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+/* Estilo para o campo de conteúdo usando CKEditorWidget */
+textarea#id_conteudo {
+    width: 650px;
+    height: 650px; /* Ajuste conforme necessário */
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    resize: none !important;
+}
+
+/* Estilo para o campo de upload de imagem */
+input[type="file"] {
+    margin-bottom: 10px;
+}
+
+/* Estilo para o botão de envio */
+button {
+    background-color: #007BFF;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
 }
 
