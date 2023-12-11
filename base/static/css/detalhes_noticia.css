@@ -48,35 +48,37 @@ body{
 .bloco{
     background-color: rgb(255, 255, 255, 0.6);
     margin-top: 10%;
-    padding: 20%;
+    margin-bottom: 10%;
+    padding: 10% 15% 10% 15%;
 }
 
 .titulo{
-    font-size: large;
+    font-size: 50px;
     font-weight: bolder;
     font-family: "Young Seri";
     text-align: center;
 }
 
-.data_publicacao{
-    text-align: right;
-    font-size: smaller;
-    font-family: "Kanit";
-}
-
-.autor{
-    text-align: right;
-    font-size: smaller;
-    font-family: "Kanit";
-}
-
-.categoria{
-    text-align: left;
-    font-size: smaller;
-    font-family: "Kanit";
+.span{
+    justify-content: space-between;
+    display: flex;
+    font-size: small;
+    font-weight: 500;
 }
 
 .conteudo_noticia{
     font-family: "Kanit";
-    font-size: medium;
+    font-size: larger;
+    white-space: pre-line;
+}
+
+.card-img-top{
+    max-width:550px;
+    max-height:450px;
+    object-fit: cover; 
+}
+
+.imagem{
+    align-items: center;
+    text-align: center;
 }

@@ -1,135 +1,58 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="../static/images/sparkles.png" type="image/icon">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="{% static 'images/sparkles.jpg' %}" type="image/icon">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Glory&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Young+Serif&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Mirza&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Alice&family=Mirza&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Glory&display=swap" rel="stylesheet">
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="../static/css/detalhes_noticia.css">
-    
+  <link href="https://fonts.googleapis.com/css2?family=Mirza&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Alice&family=Mirza&display=swap" rel="stylesheet">
 
-    <title>Detalhes da Noticia</title>
-  </head>
-  
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+    crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="{% static 'css/detalhes_noticia.css' %}">
+
+
+  <title>Detalhes da Noticia</title>
+</head>
+
 <body>
   {% block content %}
-
-  <style>
-    .navbar{
-    background-color: rgb(46, 43, 43); 
-    position: fixed;
-    width: 100%;
-    
-}
-
-.navbar-brand{
-    font-family: "Alice";
-    font-weight: bold;
-    font-size: medium;
-    color: rgb(255, 255, 255);
-}
-
-.navbar-brand:hover{
-    color: rgb(255, 255, 198, 0.6);
-}
-
-.icone{
-    width: 22.7px;
-    height: 22.7px;
-    padding-bottom: 5%;
-    margin-left: 15%;
-}
-
-.nav-link{
-    font-size:large;
-    color: rgb(255, 255, 255);
-    padding-bottom: 15%;
-    padding-left: 30%;
-}
-
-.nav-link:hover{
-    color: rgb(255, 255, 198, 0.6);
-}
-
-.btn{
-    background-color: #444242;
-    color: rgb(228, 227, 220);
-}
-
-
-body{
-    background-image: url("../static/images/home-background-4.png");
-    background-size: cover;
-}
-
-.bloco{
-    background-color: rgb(255, 255, 255, 0.6);
-    margin-top: 10%;
-    padding: 20%;
-}
-
-.titulo{
-    font-size: large;
-    font-weight: bolder;
-    font-family: "Young Seri";
-    text-align: center;
-}
-
-.data_publicacao{
-    text-align: right;
-    font-size: smaller;
-    font-family: "Kanit";
-}
-
-.autor{
-    text-align: right;
-    font-size: smaller;
-    font-family: "Kanit";
-}
-
-.categoria{
-    text-align: left;
-    font-size: smaller;
-    font-family: "Kanit";
-}
-
-.conteudo_noticia{
-    font-family: "Kanit";
-    font-size: medium;
-}
-
-.card{
-  position:fixed;
-}
-
-  </style>
 
   <nav class="navbar navbar-expand-lg">
     <div class="container-fluid">
       <a class="navbar-brand" href="{% url 'home' %}">
-        <img class="icone" src="../static/images/sparkles.png" >
+        <img class="icone" src="{% static 'images/sparkles.png' %}">
         GLITZY </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'meu_perfil' %}">meu perfil</a>
-            </li>
+          {% if user.is_authenticated %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'meu_perfil' %}">meu perfil</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'deslogar_usuario' %}">logout</a>
+          </li>
+          {% else %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'logar_usuario' %}">login</a>
+          </li>
+          {% endif %}
         </ul>
 
         <form class="d-flex" role="search">
@@ -145,13 +68,33 @@ body{
     <div class="col-md-10">
       <div class="bloco">
 
-    <h1 class="titulo">{{ noticia.titulo }}</h1>
-    <p class="data_publicacao">{{ noticia.data }}</p>
-    <p class="autor">Autor: {{ noticia.user }}</p>
-    <p class="categoria">{{ noticia.categoria }}</p>
-    <p class="conteudo_noticia">{{ noticia.conteudo }}</p>
+        <h1 class="titulo">{{ noticia.titulo }}</h1>
 
-    <div class="col-md-1">
-  {% endblock %}
+        <div class="span">
+          <span class="categoria">
+            {% for categoria in noticia.categorias.all %}
+            {{ categoria.categoria }}
+            {% endfor %}</span>
+
+          <span class="data_user">{{ noticia.data }} • {{ noticia.user }}</span>
+        </div>
+
+        <br>
+
+        <p class="conteudo_noticia">{{ noticia.conteudo }}</p>
+
+        <br>
+
+        {% if noticia.imagem_noticia %}
+        <div class="imagem">
+          <img src="{{ noticia.imagem_noticia.url }}" class="card-img-top" alt="Imagem da Notícia">
+        </div>
+        {% endif %}
+      </div>
+    </div>
+    <div class="col-md-1"></div>
+    {% endblock %}
+  </div>
 </body>
+
 </html>
