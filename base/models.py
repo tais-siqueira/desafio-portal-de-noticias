@@ -21,10 +21,10 @@ class Cadastro(AbstractUser):
     
     
 class Categorias(models.Model):
-    categorias = models.CharField(max_length=40,)
+    categoria = models.CharField(max_length=100, default='')
     
     def __str__(self):
-        return self.categorias
+        return self.categoria
 
 
 class Noticia(models.Model):
@@ -38,19 +38,6 @@ class Noticia(models.Model):
   
     def __str__(self):
         return self.titulo
-    
-  
-
-class Comentario(models.Model):
-    noticia = models.ForeignKey(Noticia, on_delete=models.CASCADE)
-    texto = models.TextField()
-    data = models.DateTimeField(auto_now_add = True)
-    foto_perfil = models.ImageField(upload_to ='comments_pics/', blank = True, null = True)
-    
-    
-    def __str__(self):
-        return f'{self.nome} - {self.noticia.titulo}'
-    
     
     
 class Perfil(models.Model):
