@@ -1,155 +1,109 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="../static/images/sparkles.png" type="image/icon">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="../static/images/sparkles.png" type="image/icon">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <link href="https://fonts.googleapis.com/css2?family=Glory&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Glory&display=swap" rel="stylesheet">
 
-    <link href="https://fonts.googleapis.com/css2?family=Mirza&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Alice&family=Mirza&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Mirza&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Alice&family=Mirza&display=swap" rel="stylesheet">
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="../static/css/home.css">
-    
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+    crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="../static/css/minhas_postagens.css">
 
-    <title>GLITZY</title>
-  </head>
+
+  <title>GLITZY</title>
+</head>
 
 <body>
-{% block content %}
+  {% block content %}
 
-<style>
-  .navbar{
-    background-color: rgb(46, 43, 43); 
-    position: fixed;
-    width: 100%;
-    
-}
-
-.navbar-brand{
-    font-family: "Alice";
-    font-weight: bold;
-    font-size: medium;
-    color: rgb(255, 255, 255);
-}
-
-.navbar-brand:hover{
-    color: rgb(255, 255, 198, 0.6);
-}
-
-.icone{
-    width: 22.7px;
-    height: 22.7px;
-    padding-bottom: 5%;
-    margin-left: 15%;
-}
-
-.nav-link{
-    font-size:large;
-    color: rgb(255, 255, 255);
-    padding-bottom: 15%;
-    padding-left: 30%;
-}
-
-.nav-link:hover{
-    color: rgb(255, 255, 198, 0.6);
-}
-
-.btn{
-    background-color: #444242;
-    color: rgb(228, 227, 220);
-}
-
-.bloco{
-    background-color: rgb(255, 255, 255, 0.6);
-    margin-top: 0%;
-    padding: 10% 10% 10% 10%;
-}
-
-.titulo{
-    text-align: center;
-    margin-top: 5%;
-
-}
-
-.card{
-    background-color: rgb(255, 255, 255, 0.5);
-}
-</style>
-
-<nav class="navbar navbar-expand-lg">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="{% url 'home' %}">
-      <img class="icone" src="../static/images/sparkles.png" >
-      GLITZY </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+  <nav class="navbar navbar-expand-lg">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="{% url 'home' %}">
+        <img class="icone" src="../static/images/sparkles.png">
+        GLITZY </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          {% if user.is_authenticated %}
           <li class="nav-item">
             <a class="nav-link" href="{% url 'meu_perfil' %}">meu perfil</a>
           </li>
-        </li>
-      </ul>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'deslogar_usuario' %}">logout</a>
+          </li>
+          {% else %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'logar_usuario' %}">login</a>
+          </li>
+          {% endif %}
+        </ul>
 
-      <form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="Pesquisar" aria-label="Search">
-        <button class="btn btn-outline-dark" type="submit">Pesquisa</button>
-      </form>
+        <form class="d-flex" role="search">
+          <input class="form-control me-2" type="search" placeholder="Pesquisar" aria-label="Search">
+          <button class="btn btn-outline-dark" type="submit">Pesquisa</button>
+        </form>
+      </div>
     </div>
-  </div>
-</nav>
+  </nav>
 
 
   <div class="row">
-  <div class="col-md-1"></div>
-  <div class="col-md-10">
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
 
-  <div class="bloco">
-  <h2 class="titulo">Minhas Postagens</h2>
+      <div class="bloco">
+        <h2 class="titulo">Minhas Postagens</h2>
+        <ul>
+          <div class="row row-cols-1 row-cols-md-3 g-4">
+            {% for noticia in postagens %}
+            <div class="col">
+              <div class="card">
+                {% if noticia.imagem_noticia %}
+                <img src="{{ noticia.imagem_noticia.url }}" class="card-img-top" alt="Imagem da Notícia">
+                {% endif %}
+                <div class="card-body">
+                  <h5 class="card-title"><a href="{% url 'noticia_detalhe' noticia.id %}">{{ noticia.titulo }}</a></h5>
+                  <p class="card-text">
+                    {% for categoria in noticia.categorias.all %}
+                    {{ categoria.categoria }}
+                    {% endfor %}
+                    • {{ noticia.data }}
+                  </p>
+                </div>
+                <div class="card-footer">
+                  {% if user.is_authenticated and user.id == noticia.user.id %}
 
-  {% for noticia in postagens %}
-
-  <div class="col">
-    <div class="card">
-      <img src="" class="card-img-top" alt="...">
-      <div class="card-body">
-        <h5 class="card-title"><a href="{% url 'noticia_detalhe' noticia.id %}">
-          {{ noticia.titulo }}</a></h5>
-        <p class="card-text"> {{ noticia.categorias }} • {{ noticia.data }} </p>
+                    <form action="{% url 'excluir_noticia' noticia.id %}" method="POST">
+                      {% csrf_token %}
+                      <input type="hidden" name="method" value="DELETE">
+                      <button type="submit" class="botao-excluir">
+                        <img class="excluirpost" src="../static/images/trash.png" />
+                      </button>
+                    </form>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+        </ul>
       </div>
     </div>
+    <div class="col-md-1"></div>
   </div>
-    
-    {% if user.is_authenticated and user.id == noticia.user.id %}
-        <a href="{% url 'excluir_noticia' noticia.id %}">Excluir Post</a>
-
-       {% if user.is_authenticated and user.id == noticia.user.id %}
-        <!-- Botão de exclusão do post -->
-        <form action="{% url 'excluir_noticia' noticia.id %}" method="POST">
-          {% csrf_token %}
-          <input type="hidden" name="method" value="DELETE">
-          <button type="submit" class="btn">
-              <img class="excluirpost" src="../static/images/trash.png" />
-          </button>
-      </form>
-      {% endif %}
-    {% endif %}
-    <hr>
-  </div>
-    <div class="col-md-1">
-      
-    </div>
-  
-
-  {% endfor %}
-{% endblock %}
+  {% endblock %}
 </body>
