@@ -1,16 +1,9 @@
-import logging
-from urllib import request
-from django import forms
 from django.shortcuts import redirect, render, get_object_or_404
-from base.models import Noticia, Comentario, Perfil, Categorias, Imagem
-from base.forms import BarraDePesquisaForm, CadastroForm, NoticiaForm, ComentarioForm, PerfilForm
-from django.http import HttpResponse
+from base.models import Noticia, Perfil, Categorias, Imagem
+from base.forms import BarraDePesquisaForm, NoticiaForm, PerfilForm
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.contrib.auth import login, authenticate
-from django.contrib.auth.models import User
-from django.contrib.auth.hashers import check_password
-from django.contrib.auth.views import LoginView
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.signals import user_logged_in
 from django.dispatch import receiver
@@ -18,26 +11,27 @@ from .models import Noticia
 from PIL import Image
 from datetime import date
 from django.core.files.uploadedfile import InMemoryUploadedFile
-import sys
-
+from io import BytesIO
+from django.contrib.auth import logout
 
 def home(request):
     ultimas_noticias = Noticia.objects.all()
+    return render(request, 'home.html', {'ultimas_noticias': ultimas_noticias})
+
+def pesquisar_noticias(request):
+    results = []
+    form = BarraDePesquisaForm(request.GET)
     
+    if form.is_valid():
+        keyword = form.cleaned_data['keyword']
+        print(f"Keyword: {keyword}")
+        results = Noticia.objects.filter(titulo__icontains=keyword)
 
-    if request.method == 'GET':
-        form = BarraDePesquisaForm(request.GET)
-        results = []
+    ultimas_noticias = Noticia.objects.all()
+    print(f"Ultimas Noticias: {ultimas_noticias}")
 
-        if form.is_valid():
-            keyword = form.cleaned_data['keyword']
-            results = Noticia.objects.filter(titulo__icontains=keyword)
-            return render(request, 'resultados_pesquisa.html',{'form': form, 'results': results})
+    return render(request, 'resultados_pesquisa.html', {'ultimas_noticias': ultimas_noticias, 'form': form, 'results': results})
 
-    else:
-        form = BarraDePesquisaForm()
-
-    return render(request, 'home.html', {'ultimas_noticias': ultimas_noticias, 'form': form, 'results': results})
     
 
 def cadastrar_usuario(request):
@@ -65,32 +59,44 @@ def logar_usuario(request):
         form_login = AuthenticationForm()
     return render(request, 'login.html', {'form_login': form_login})
 
+def deslogar_usuario(request):
+    logout(request)
+    messages.success(request, 'Logout realizado com sucesso!')
+    return redirect('logar_usuario')
 
 @login_required      
 def criar_noticia(request):
     categorias = Categorias.objects.all()  
     if request.method == 'POST':
-        form = NoticiaForm(request.POST, request.FILES)
+        form = NoticiaForm(request.POST, request.FILES, categorias=categorias)
         if form.is_valid():
             noticia = form.save(commit=False)
             noticia.user_id = request.user.id      
             noticia.save()
             
+            # Adicione o seguinte loop para associar categorias selecionadas à notícia
+            for categoria_id in request.POST.getlist('categorias'):
+                categoria = Categorias.objects.get(pk=categoria_id)
+                noticia.categorias.add(categoria)
+            
             for f in request.FILES.getlist('imagens'):
                 name = f'{date.today}-{noticia.id}.jpg'
                 img = Image.open(f)
-                img = img.convert('RBG')
-                img.save(format="JPEG")
-                img_final = InMemoryUploadedFile(name, 'image/jpeg', None)
+                img = img.convert('RGB')
+
+                # Convertendo a imagem para bytes
+                buffer = BytesIO()
+                img.save(buffer, format="JPEG")
+
+                # Criando o objeto InMemoryUploadedFile com os dados da imagem
+                img_final = InMemoryUploadedFile(buffer, None, name, 'image/jpeg', buffer.tell(), None)
+    
+                # Salvar a imagem no campo imagem_noticia do modelo Noticia
+                noticia.imagem_noticia.save(name, img_final)
                 
-                img = Imagem(imagem = img_final, noticia=noticia)
-                img.save()
             return redirect('home')   
-        
-        
-        
     else:
-        form = NoticiaForm()
+        form = NoticiaForm(categorias=categorias)
 
     return render(request, 'criar_noticia.html', {'form': form, 'categorias': categorias})
 
@@ -120,36 +126,17 @@ def meu_perfil(request):
 @login_required
 def excluir_noticia(request, noticia_id):
     noticia = get_object_or_404(Noticia, id=noticia_id)
-    if request.user.id == noticia.user.id:
-        noticia.comentarios.all().delete()  
+    if request.user.id == noticia.user.id:  
         noticia.delete()
 
         messages.success(request, 'Post excluído com sucesso.')
     else:
         messages.error(request, 'Você não tem permissão para excluir este post.')
 
-    return redirect(request, 'detalhes_noticia.html', {'noticia': noticia})
+    return redirect('home')
     
     
 def detalhes_noticia(request, noticia_id):        
     noticia = get_object_or_404(Noticia, pk = noticia_id)    
     return render(request, 'detalhes_noticia.html', {'noticia': noticia})
-
-
-def comentarios(request, noticia_id):
-    noticia = get_object_or_404(Noticia, id = noticia_id)     
-    comentarios = Comentario.objects.filter(noticia = noticia)   
-
-    if request.method == 'POST':             
-        form = ComentarioForm(request.POST)       
-        if form.is_valid():                    
-            comentario = form.save(commit = False)  
-            comentario.noticia = noticia          
-            comentario.save()                  
-            return redirect('detalhes_noticia', noticia_id  = noticia.id) 
-        form = ComentarioForm()  
-
-    return render(request, 'detalhes_noticia.html', {'noticia': noticia, 'comentarios': comentarios, 'form': form})
-
-
 
