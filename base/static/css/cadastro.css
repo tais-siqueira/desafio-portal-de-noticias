@@ -16,59 +16,29 @@
     color: rgb(255, 255, 198, 0.6);
 }
 
-.icone{
-    width: 22.7px;
-    height: 22.7px;
-    padding-bottom: 5%;
-}
-
 body{
     background-image: url("../images/home-background-4.png");
 }
 
 .bloco{
     background-color: rgba(255, 255, 255, 0.6);
+    margin-top: 15%;
+    padding: 5% 10% 10% 10%;
+
 }
 
-.titulo{
-    text-align: center;
-}
-
-.formulario-cadastro{
-    
-    padding: 5%;
-    margin-top: 20%;
-    margin-bottom: 20%;
-}
-
-.form-label{
-    align-items: center;
-    font-size: small;
-}
-
-.form-control{
-    border-radius: 30px;
-    margin-bottom: 3%;
-}
-
-.botao{
-   text-align: center;
-   margin-top: 7%;
+.form-group{
+    padding: 2%;
+    margin-left: 19%;
 }
 
 .btn{
     background-color: #444242 !important;
-    color: rgb(228, 227, 220) !important;
+    margin-left: 18%;
 }
 
 .rota-login{
     font-size: small;
     text-align: center;
-    margin-top: 5%;
-
-}
-
-.custom-label{
-    text-align: center;
-
+    margin-top: 3%;
 }

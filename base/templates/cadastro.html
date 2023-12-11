@@ -12,15 +12,23 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </head>
 <body>
-{% load bootstrap5 %}     
+  
 {% block principal %}     
+
+<style>
+  .formulario-cadastro{
+    padding: 5%;
+    margin-top: 25%;
+    margin-bottom: 20%;
+}
+
+</style>
 
   <div class="container-fluid">
 
     <ul class="nav justify-content-center">
       <li class="nav-item">
         <a class="nav-link" href="{% url 'home' %}">
-          <img class="icone" src="../static/images/sparkles.png" >
           GLITZY</a>
       </li>
     </ul>
@@ -29,46 +37,50 @@
       <div class="col-md-4"></div>
       <div class="col-md-4">
        <div class="bloco">
-        <form method="post">
+        <form method="post" class="formulario-login">
           {% csrf_token %}
       
           <div class="form-group">
               {{form_usuario.username.errors}}
               <label>Username: </label>
+              <br>
               {{form_usuario.username}}
           </div>
       
           <div class="form-group">
               {{form_usuario.password1.errors}}
               <label>Senha: </label>
+              <br>
               {{form_usuario.password1}}
           </div>
       
           <div class="form-group">
               {{form_usuario.password2.errors}}
               <label>Confirmação de senha: </label>
+              <br>
               {{form_usuario.password2}}
           </div>
       
           <div class="form-group">
+              <br>
               <input type="submit" value="Cadastrar" class="btn btn-primary">
           </div>
       </form>
 
+      <p class="rota-login">Já possui uma conta? <a href="{% url 'logar_usuario' %}"> Clique aqui para acessar!</a></p>
+
     </div>
       </div>
+
+      
 
       <div class="col-md-4"></div>
 
     </div>
 
-  {% if sucesso %}
-    <p class = "alert alert-success"> Cadastro efetuado com sucesso! </p>
-  {% else %}
   
   </div>
-</div>
-  {% endif %}   
+</div>   
 {% endblock %}
 </body>
 </html>
