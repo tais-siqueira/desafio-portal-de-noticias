@@ -48,15 +48,18 @@ body{
 .bloco{
     background-color: rgb(255, 255, 255, 0.6);
     margin-top: 10%;
-    padding: 20%;
-}
-
-.bloco-criar{
-    align-items: center;
     padding: 10%;
+    text-align: center;
 }
 
-.criar_postagens{
-    text-align: center;
-    justify-content: center;
+.criar_postagens, .minhas_postagens{
+    color: black;
+    text-decoration: none;
+    font-size: large;
+    font-weight: 500;
+    font-family: "Alice";
+}
+
+.criar_postagens:hover, .minhas_postagens:hover{
+    color: rgb(255, 255, 198, 0.6);
 }
