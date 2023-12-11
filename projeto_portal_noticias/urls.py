@@ -18,8 +18,8 @@ from django.conf.urls.static import static
 from django.conf import settings
 from django.contrib import admin
 from django.urls import include, path
-from base.views import home, detalhes_noticia, cadastrar_usuario, criar_noticia, minhas_postagens, meu_perfil, logar_usuario, excluir_noticia
-from django.contrib.auth import views as auth_views
+from base.views import home, detalhes_noticia, cadastrar_usuario, criar_noticia, minhas_postagens, meu_perfil, logar_usuario, excluir_noticia, deslogar_usuario, pesquisar_noticias
+
 
 
 urlpatterns = [
@@ -28,14 +28,14 @@ urlpatterns = [
     path('', home, name='home'),
     path('cadastrar_usuario/', cadastrar_usuario, name="cadastrar_usuario"),
     path('logar_usuario/', logar_usuario, name="logar_usuario"),
+    path('logout/', deslogar_usuario, name='deslogar_usuario'),
     path('noticia_detalhe/<int:noticia_id>/', detalhes_noticia, name='noticia_detalhe'),
     path('criar_postagem/', criar_noticia, name='criar_noticia'),
     path('minhas_postagens/', minhas_postagens, name='minhas_postagens'),
     path('meu_perfil/', meu_perfil, name='meu_perfil'),
     path('excluir_noticia/<int:noticia_id>/', excluir_noticia, name='excluir_noticia'),
-    path('ckeditor/', include('ckeditor_uploader.urls')),
-    
-    
-]
+    path('resultados_pesquisa/', pesquisar_noticias, name='resultados_pesquisa')
 
-urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    
+    
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
