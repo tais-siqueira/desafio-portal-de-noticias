@@ -1,6 +1,5 @@
-from django.contrib.auth.forms import AuthenticationForm
 from django import forms
-from base.models import Cadastro, Noticia, Comentario, Perfil, Categorias, Imagem
+from base.models import Cadastro, Noticia, Perfil, Imagem, Categorias
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from ckeditor.widgets import CKEditorWidget
@@ -34,9 +33,10 @@ class CKEditorImageWidget(forms.ClearableFileInput):
 class NoticiaForm(forms.ModelForm):
     class Meta:
         model = Noticia
+        conteudo = forms.CharField(widget=forms.Textarea)
         fields = ['titulo', 'categorias', 'conteudo', 'imagem_noticia']
         widgets = {
-            'categorias': forms.CheckboxSelectMultiple(),
+            'categorias': forms.SelectMultiple(),
             'conteudo': CKEditorWidget(),
         }
     
@@ -45,12 +45,6 @@ class NoticiaForm(forms.ModelForm):
         super(NoticiaForm, self).__init__(*args, **kwargs)
         if categorias:
             self.fields['categorias'].queryset = categorias
-
-
-class ComentarioForm(forms.Form):
-    class Meta:
-        model = Comentario
-        fields = ['texto', 'foto_perfil']
 
 
 class BarraDePesquisaForm(forms.Form):
